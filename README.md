@@ -1,4 +1,4 @@
-## 안드로이드 예제 연습입니다.
-## 교재 : 깡샘의 안드로이드 프로그래밍 Android 8.0 (Orea) Android Studio 3.0 적용
+# 드로이드 예제 연습
+### 교재 : 깡샘의 안드로이드 프로그래밍 Android 8.0 (Orea) Android Studio 3.0 적용
 
-## 깡샘의 안드로이드 깃헙 주소 : [https://github.com/kkangseongyun/kkangs_android]
+####샘의 안드로이드 깃헙 주소 : [https://github.com/kkangseongyun/kkangs_android]
