@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/host"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TabWidget
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@android:id/tabs"
+            android:background="@color/colorPrimary">
+
+        </TabWidget>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@android:id/tabcontent">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="tab1"
+                android:gravity="center"
+                android:id="@+id/tab1"
+                android:textStyle="bold"
+                android:textSize="30sp">
+
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="tab2"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:id="@+id/tab2"
+                >
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="tab3"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:id="@+id/tab3">
+
+            </TextView>
+
+
+        </FrameLayout>
+
+    </LinearLayout>
+</TabHost>

@@ -1,0 +1,5 @@
+include ':example_4-4'
+include ':example_4-3'
+include ':example_4-2'
+include ':app'
+rootProject.name = "example_4-1"
