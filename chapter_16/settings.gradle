@@ -1,0 +1,4 @@
+include ':example_16-3'
+include ':example_16-2'
+include ':app'
+rootProject.name = "My Application"
