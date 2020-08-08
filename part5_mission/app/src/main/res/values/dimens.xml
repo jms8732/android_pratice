@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="reqwidth">120dp</dimen>
-    <dimen name="reqHeight">1200dp</dimen>
+    <dimen name="reqwidth">150dp</dimen>
+    <dimen name="reqHeight">150dp</dimen>
 
-    <dimen name="porWidth">250dp</dimen>
-    <dimen name="porHeight">250dp</dimen>
+    <dimen name="porWidth">150dp</dimen>
+    <dimen name="porHeight">150dp</dimen>
 </resources>

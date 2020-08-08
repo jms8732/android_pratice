@@ -18,6 +18,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.media.Image;
+import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,9 +27,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -70,9 +73,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
             reqWidth = getResources().getDimensionPixelSize(R.dimen.reqwidth);
             reqHeight = getResources().getDimensionPixelSize(R.dimen.reqHeight);
+            Toast.makeText(this, "PorTrait", Toast.LENGTH_SHORT).show();
         }else{
             reqWidth = getResources().getDimensionPixelSize(R.dimen.porWidth);
             reqHeight = getResources().getDimensionPixelSize(R.dimen.porHeight);
+            Toast.makeText(this, "LandScape", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -112,7 +117,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 10 && resultCode == RESULT_OK) {
             putCamera();
+        }else if(requestCode == 20 && resultCode == RESULT_OK){
+            putVideo();
         }
+    }
+
+    private void putVideo(){
+
+            VideoView videoView = new VideoView(getApplicationContext());
+            videoView.setMediaController(new MediaController(getApplicationContext()));
+            Uri videoUri = Uri.parse(filePath.getAbsolutePath());
+
+            MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+            Bitmap bmp = null;
+            retriever.setDataSource(filePath.getAbsolutePath());
+            bmp = retriever.getFrameAtTime();
+
+            int videoHeight = bmp.getHeight();
+            int videoWidth = bmp.getWidth();
+
+            videoView.setVideoURI(videoUri);
+
+            RelativeLayout.LayoutParams params = null;
+            if (videoWidth >= videoHeight) {
+                params = new RelativeLayout.LayoutParams(reqWidth, reqHeight);
+
+                params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            } else {
+                params = new RelativeLayout.LayoutParams(reqHeight, reqWidth);
+                params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            }
+
+            layout.addView(videoView, params);
+            videoView.start();
+
     }
 
     private void putCamera(){
@@ -196,6 +234,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                 } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else {
+                String path = getExternalFilesDir(null).getAbsolutePath() + "/myApp";
+                File dir = new File(path);
+
+                if (!dir.exists()) {
+                    dir.mkdir();
+                }
+
+                try {
+                    filePath = File.createTempFile("VIDEO", ".mp4", dir);
+                    if (!filePath.exists()) {
+                        filePath.createNewFile();
+                    }
+
+                    Uri videoURI = FileProvider.getUriForFile(getApplicationContext(),BuildConfig.APPLICATION_ID +".provider",filePath);
+
+                    Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT,videoURI);
+                    intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0);
+                    intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 20);
+                    intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT, 1024 * 1024 * 10);
+
+                    startActivityForResult(intent, 20);
+
+                }catch(IOException e){
                     e.printStackTrace();
                 }
             }
