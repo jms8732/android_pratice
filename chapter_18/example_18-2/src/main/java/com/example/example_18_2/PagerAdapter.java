@@ -10,13 +10,12 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.List;
 
-public class MyPagerAdapter extends FragmentPagerAdapter {
-    List<Fragment> list;
+public class PagerAdapter extends FragmentPagerAdapter {
+    private String[] title = {"Tab1","Tab2","Tab3"};
+    private List<Fragment> list;
 
-    private final String[] titles = {"Tab1","Tab2","Tab3"};
-
-    public MyPagerAdapter(@NonNull FragmentManager fm, int behavior, List<Fragment> list) {
-        super(fm, behavior);
+    public PagerAdapter(FragmentManager manager, int behavior, List<Fragment> list){
+        super(manager,behavior);
         this.list = list;
     }
 
@@ -34,6 +33,6 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return titles[position];
+        return title[position];
     }
 }

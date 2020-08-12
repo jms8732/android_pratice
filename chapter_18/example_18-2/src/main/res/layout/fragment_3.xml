@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="Fragment Three"
-        android:textSize="30dp"/>
+        android:text="Three Fragment"
+        android:textSize="30dp"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
