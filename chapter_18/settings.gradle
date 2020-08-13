@@ -1,3 +1,4 @@
+include ':example_18-4'
 include ':example_18-3'
 include ':example_18-2'
 include ':app'
