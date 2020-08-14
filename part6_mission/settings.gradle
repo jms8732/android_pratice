@@ -1,3 +1,4 @@
+include ':mission1'
 include ':mission3'
 include ':app'
 rootProject.name = "My Application"
